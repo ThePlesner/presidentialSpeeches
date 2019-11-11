@@ -3,8 +3,6 @@ import re
 
 # Speeches (.txt) should be named by the year in which they were spoken
 # Returns a string containing the whole transcription of the speech
-
-
 def readSpeech(year):
   # Opens file
   with open(f"./speeches/{year}.txt", "r", encoding="utf-8") as text:
@@ -19,8 +17,6 @@ def initialCleaning(speech):
   return cleanSpeech
 
 # Takes a string and returns the LIX of that string
-
-
 def calculateLix(speech):
   cleanSpeech = initialCleaning(speech)
 
@@ -60,8 +56,6 @@ def calculateDaleChall(speech):
   cleanSpeech = initialCleaning(speech)
 
 # Returns a tuple with [0] == CLI and [1] == LIX
-
-
 def readability(year):
   speech = readSpeech(year)
   return (calculateColemanLiau(speech), calculateLix(speech))
