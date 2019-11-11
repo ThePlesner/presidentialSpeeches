@@ -48,19 +48,13 @@ def calculateColemanLiau(speech):
   lettersPer100Words = numWordChars/numWords * 100
 
   cli = 0.0588*lettersPer100Words - 0.296*sentencesPer100Words - 15.8
-  # return round(cli, 2)
-  return cli
+  return round(cli, 2)
 
 
-def calculateDaleChall(speech):
-  cleanSpeech = initialCleaning(speech)
+# def calculateDaleChall(speech):
+#   cleanSpeech = initialCleaning(speech)
 
 # Returns a tuple with [0] == CLI and [1] == LIX
 def readability(year):
   speech = readSpeech(year)
   return (calculateColemanLiau(speech), calculateLix(speech))
-
-
-# TEST
-#print(readability(2002)[0], readability(2002)[1])
-print(readability(2002))
