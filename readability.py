@@ -5,7 +5,7 @@ import re
 # Returns a string containing the whole transcription of the speech
 def readSpeech(year):
   # Opens file
-  with open(f"./speeches/{year}.txt", "r", encoding="utf-8") as text:
+  with open(f'./speeches/{year}.txt', 'r', encoding='utf-8', errors='replace') as text:
     speech = text.read()
     return speech
 

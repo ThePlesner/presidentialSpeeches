@@ -3,7 +3,7 @@ from wordcloud import WordCloud
 
 
 def createWordCloud(year):
-  with open(f'./speeches/{year}.txt', 'r', encoding="utf-8") as text:
+  with open(f'./speeches/{year}.txt', 'r', encoding='utf-8', errors='replace') as text:
     text = text.read().lower()
 
     # WordCloud-class generates an object with the height and width props of our wordcloud
@@ -22,3 +22,4 @@ def showWordCloud(year):
 
 def saveWordCloud(year):
   createWordCloud(year).save(f'./output/images/{year}-wordcloud.png')
+
