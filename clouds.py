@@ -1,5 +1,7 @@
 # Imports a class 'WordCloud' from library 'wordcloud' containing necessary methods.
 from wordcloud import WordCloud
+# Used to check for already existing wordcloud files, as to not generate them every time
+import os
 
 
 def createWordCloud(year):
@@ -21,5 +23,6 @@ def showWordCloud(year):
 
 
 def saveWordCloud(year):
-  createWordCloud(year).save(f'./output/images/{year}-wordcloud.png')
-
+  filePath = f'./output/images/{year}-wordcloud.png'
+  if not os.path.isfile(filePath):
+    createWordCloud(year).save(f'./output/images/{year}-wordcloud.png')

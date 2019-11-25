@@ -42,23 +42,30 @@ def writeHTML():
   with open('./output/documents/overview.html', 'w', encoding='utf-8') as file:
     file.write(str(document))
 
-
 def generateDiv(year):
   # Calculating readability numbers from imported file
   readabilityNums = readability.readability(year)
   CLI = readabilityNums[0]
   LIX = readabilityNums[1]
 
-  # Generating a word cloud image
+  # Generating a word cloud image, if it does not already exist for the given year
   clouds.saveWordCloud(year)
 
-  # Generates a div with the two readability numbers as headings
-  speechBox = div(h3(CLI), h3(LIX))
-
-  # Adds the wordcloud to the div
+  # Generates a div for every year's speech
+  speechBox = div(className="speech-box")
+  # Generating a heading with the given year
+  yearHeading = h2(year)
+  # Generating a div with headings for the readability numbers
+  readabilityBox = div(h3(f"Coleman-Liau Index: {CLI}"), h3(f"LIX: {LIX}"))
+  readabilityBox['class'] = 'readability-box'
+  # Generating a div for text elements for easier layout
+  textBox = div(className="text-box")
+  # Putting the text elements together for layouting
+  textBox.add(yearHeading, readabilityBox)
+  # Adds the wordcloud image and textBox to the speechBox
   speechBox.add(img(src=f"../images/{year}-wordcloud.png"))
+  speechBox.add(textBox)
   
   return speechBox
 
-
-writeHTML()
+writeHTML() # DELETE AND MOVE TO GUI
