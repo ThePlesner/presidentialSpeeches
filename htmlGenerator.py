@@ -57,7 +57,7 @@ def generateDiv(year):
 
   # Adds the wordcloud to the div
   speechBox.add(img(src=f"./output/images/{year}-wordcloud.png"))
-
+  
   return speechBox
 
 
