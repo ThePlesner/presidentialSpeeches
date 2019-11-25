@@ -34,7 +34,7 @@ def writeHTML():
       except:
         print(f"The speech from {year} does not exist.")
 
-      presidencies += presidentContainer
+    presidencies += presidentContainer
 
   document.body.add(presidencies)
 
@@ -56,7 +56,7 @@ def generateDiv(year):
   speechBox = div(h3(CLI), h3(LIX))
 
   # Adds the wordcloud to the div
-  speechBox.add(img(src=f"./output/images/{year}-wordcloud.png"))
+  speechBox.add(img(src=f"../images/{year}-wordcloud.png"))
   
   return speechBox
 
