@@ -1,28 +1,30 @@
-# Imports a class 'WordCloud' from library 'wordcloud' containing necessary methods.
+# Imports the WordCloud method to generate wordcloud images
 from wordcloud import WordCloud
 # Used to check for already existing wordcloud files, as to not generate them every time
 import os
-
+# Used to generate OS specific file paths
+from pathlib import Path
 
 def createWordCloud(year):
-  with open(f'./speeches/{year}.txt', 'r', encoding='utf-8', errors='replace') as text:
-    text = text.read().lower()
+  filePath = Path('speeches', f'{year}.txt')
+  # errors='replace' is used to work around decoding errors, since it would unnecessarily time consuming to make sure all the speeches are in utf-8
+  with open(filePath, 'r', encoding='utf-8', errors='replace') as textFile:
+    # We don't want duplicate words with differing capitalizations
+    speech = textFile.read().lower()
 
-    # WordCloud-class generates an object with the height and width props of our wordcloud
-    # .generate(text) calls a method (generate_from_frequencies) that uses the object parameters to generate a wordmap.
-    # it uses the frequency of each word to adjust font-size of each word and creates a word cloud.
-    wordcloud = WordCloud(width=800, height=600).generate(text)
-    # to_image then draws an image from the word cloud.
+    # First we set size settings with the WordCloud method, then we generate the wordcloud object
+    wordcloud = WordCloud(width=800, height=600).generate(speech)
+    # Then we generate an image object from the wordcloud object
     image = wordcloud.to_image()
     return image
 
-
 def showWordCloud(year):
-  # .show() displays an image using the default application on the computer.
+  # Displays in default image application
   createWordCloud(year).show()
 
-
 def saveWordCloud(year):
-  filePath = f'./output/images/{year}-wordcloud.png'
+  # Path and name of generated image file
+  filePath = Path('output/images', f'{year}-wordcloud.png')
+  # Only generates file if it does not exist
   if not os.path.isfile(filePath):
-    createWordCloud(year).save(f'./output/images/{year}-wordcloud.png')
+    createWordCloud(year).save(filePath)
