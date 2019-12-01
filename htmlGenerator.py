@@ -9,6 +9,9 @@ import clouds
 # For parsing the json with presidential periods data
 import json
 
+# Counter variable for the progress bar in the interface
+progress = 0
+
 # Opens and reads json file
 presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8').read()
 # Parses json into python
@@ -34,6 +37,8 @@ def writeHTML():
       try:
         # Adds a box with every speech's data
         presidentContainer.add(generateSpeechBox(year))
+        # Every speech adds 1 to the progress
+        progress += 1
       except:
         print(f"The speech from {year} does not exist.")
 
