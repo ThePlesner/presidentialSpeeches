@@ -35,15 +35,10 @@ def writeHTML():
     for year in range(president['period_from'], president['period_to'] + 1):
       # Handles missing speech files
       try:
-<<<<<<< HEAD
-        presidentContainer.add(generateDiv(year))
-        print(str(year) + " done")
-=======
         # Adds a box with every speech's data
         presidentContainer.add(generateSpeechBox(year))
         # Every speech adds 1 to the progress
         progress += 1
->>>>>>> 8332c7a83830514943bfe7476a940ba859375150
       except:
         print(f"The speech from {year} does not exist.")
 
