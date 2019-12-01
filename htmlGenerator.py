@@ -1,20 +1,22 @@
 # For generating HTML
 import dominate
+# For easy access to HTML tag methods
 from dominate.tags import *
-# Our functions to generate readability numbers
+# Our own functions to generate readability numbers
 import readability
-# Our functions to generate word clouds
+# Our own functions to generate word clouds
 import clouds
-# For parsing the json with presidential periods
+# For parsing the json with presidential periods data
 import json
 
+# Opens and reads json file
+presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8').read()
 # Parses json into python
-presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8')
-presidentialPeriods = json.loads(presidentialPeriods.read())
+presidentialPeriods = json.loads(presidentialPeriods)
 
 
 def writeHTML():
-  # Generates an html-template
+  # Generates an empty html-template with only a title
   document = dominate.document(title="Presidential Speeches")
   # Links to the style document
   with document.head:
@@ -23,26 +25,31 @@ def writeHTML():
   # Generates a list of presidents
   presidencies = ul()
   for president in presidentialPeriods:
-    # Adds a row for each president
+    # Adds a row (list item) for each president's name in the json data
     presidentContainer = li(h1(president['name']))
 
-    # Adds cell data for each year of the presidency
+    # Adds cell data for each year of the presidency (taken from json data)
     for year in range(president['period_from'], president['period_to'] + 1):
-      # Handles missing speeches
+      # Handles missing speech files
       try:
-        presidentContainer.add(generateDiv(year))
+        # Adds a box with every speech's data
+        presidentContainer.add(generateSpeechBox(year))
       except:
         print(f"The speech from {year} does not exist.")
 
+    # The unordered list can be manipulated like a python list:
     presidencies += presidentContainer
 
+  # Appends the whole list to the HTML document's body
   document.body.add(presidencies)
 
+  filePath = Path('output/documents', 'overview.html')
   # Writes the document to an html-file
-  with open('./output/documents/overview.html', 'w', encoding='utf-8') as file:
+  with open(filePath, 'w', encoding='utf-8') as file:
+    # the DOM object needs to be converted to a string to do so
     file.write(str(document))
 
-def generateDiv(year):
+def generateSpeechBox(year):
   # Calculating readability numbers from imported file
   readabilityNums = readability.readability(year)
   CLI = readabilityNums[0]
@@ -63,9 +70,7 @@ def generateDiv(year):
   # Putting the text elements together for layouting
   textBox.add(yearHeading, readabilityBox)
   # Adds the wordcloud image and textBox to the speechBox
-  speechBox.add(img(src=f"../images/{year}-wordcloud.png"))
+  speechBox.add(img(src=f"../images/{year}-wordcloud.png")) # Browser does the path OS-conversion for us this time
   speechBox.add(textBox)
   
   return speechBox
-
-writeHTML() # DELETE AND MOVE TO GUI
