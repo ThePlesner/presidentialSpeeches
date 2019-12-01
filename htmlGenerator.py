@@ -31,6 +31,7 @@ def writeHTML():
       # Handles missing speeches
       try:
         presidentContainer.add(generateDiv(year))
+        print(str(year) + " done")
       except:
         print(f"The speech from {year} does not exist.")
 
@@ -68,4 +69,3 @@ def generateDiv(year):
   
   return speechBox
 
-writeHTML() # DELETE AND MOVE TO GUI
