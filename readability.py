@@ -5,8 +5,6 @@ from pathlib import Path
 
 # Speeches (.txt) are be named by the year in which they were spoken
 # Returns a string containing the whole transcription of the speech
-
-
 def readSpeech(year):
   filePath = Path('speeches', f'{year}.txt')
   # errors='replace' is used to work around decoding errors, since it would unnecessarily time consuming to make sure all the speeches are in utf-8
@@ -15,8 +13,6 @@ def readSpeech(year):
     return speech
 
 # Takes a text string and removes newlines, dashes, and some symbols
-
-
 def initialCleaning(speech):
   cleanSpeech = re.sub(r"\n", " ", speech)
   cleanSpeech = re.sub(r"—|-", " ", cleanSpeech)
@@ -24,16 +20,13 @@ def initialCleaning(speech):
   return cleanSpeech
 
 # LIX = (number of words / number of sentences) + (number of long words * 100) / number of words
-
-
 def calculateLix(speech):
   cleanSpeech = initialCleaning(speech)
 
   # Splitting on space gives us a list of just the words
   numWords = len(cleanSpeech.split())
   # Every period, question mark and exclamation point indicates the end of a sentence
-  numSentences = cleanSpeech.count(
-      '.') + cleanSpeech.count('?') + cleanSpeech.count('!')
+  numSentences = cleanSpeech.count('.') + cleanSpeech.count('?') + cleanSpeech.count('!')
 
   # We now remove periods and quotation marks
   cleanSpeech = re.sub(r"\.|\?|!", "", cleanSpeech)
@@ -49,14 +42,11 @@ def calculateLix(speech):
   return round(lix, 2)
 
 # CLI = 0.0588 * (avg num of letters / 100 words) - 0.296 * (avg num of sentences / 100 words) - 15.8
-
-
 def calculateColemanLiau(speech):
   cleanSpeech = initialCleaning(speech)
 
   # Every period, question mark and exclamation point indicates the end of a sentence
-  numSentences = cleanSpeech.count(
-      '.') + cleanSpeech.count('?') + cleanSpeech.count('!')
+  numSentences = cleanSpeech.count('.') + cleanSpeech.count('?') + cleanSpeech.count('!')
   # Splitting on space gives us a list of just the words
   numWords = len(cleanSpeech.split())
   sentencesPer100Words = numSentences / numWords * 100
@@ -67,10 +57,6 @@ def calculateColemanLiau(speech):
 
   cli = 0.0588 * lettersPer100Words - 0.296 * sentencesPer100Words - 15.8
   return round(cli, 2)
-
-
-# def calculateDaleChall(speech):
-#   cleanSpeech = initialCleaning(speech)
 
 # Returns a tuple with [0] == CLI and [1] == LIX
 def readability(year):

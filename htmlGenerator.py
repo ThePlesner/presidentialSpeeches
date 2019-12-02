@@ -36,9 +36,9 @@ def writeHTML():
       try:
         # Adds a box with every speech's data
         presidentContainer.add(generateSpeechBox(year))
+        print(f"The speech from {year} was created.")
       except:
         print(f"The speech from {year} does not exist.")
-
     # The unordered list can be manipulated like a python list:
     presidencies += presidentContainer
 
@@ -50,6 +50,7 @@ def writeHTML():
   with open(filePath, 'w', encoding='utf-8') as file:
     # the DOM object needs to be converted to a string to do so
     file.write(str(document))
+
 
 def generateSpeechBox(year):
   # Calculating readability numbers from imported file
@@ -72,7 +73,8 @@ def generateSpeechBox(year):
   # Putting the text elements together for layouting
   textBox.add(yearHeading, readabilityBox)
   # Adds the wordcloud image and textBox to the speechBox
-  speechBox.add(img(src=f"../images/{year}-wordcloud.png")) # Browser does the path OS-conversion for us this time
+  # Browser does the path OS-conversion for us this time
+  speechBox.add(img(src=f"../images/{year}-wordcloud.png"))
   speechBox.add(textBox)
-  
+
   return speechBox
