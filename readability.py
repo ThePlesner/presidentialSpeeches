@@ -13,7 +13,7 @@ def readSpeech(year):
 
 # Takes a text string and removes newlines, dashes, and some symbols
 def initialCleaning(speech):
-        # Substitutes first argument with the second argument
+  # Substitutes first argument with the second argument
   cleanSpeech = re.sub(r"\n", " ", speech)
   cleanSpeech = re.sub(r"—|-", " ", cleanSpeech)
   cleanSpeech = re.sub(r"[^a-zA-Z \.'\?!]", "", cleanSpeech)
@@ -49,8 +49,7 @@ def calculateColemanLiau(speech):
   cleanSpeech = initialCleaning(speech)
 
   # Every period, question mark and exclamation point indicates the end of a sentence
-  numSentences = cleanSpeech.count(
-      '.') + cleanSpeech.count('?') + cleanSpeech.count('!')
+  numSentences = cleanSpeech.count('.') + cleanSpeech.count('?') + cleanSpeech.count('!')
 
   # Splitting on space gives us a list of just the words
   numWords = len(cleanSpeech.split())

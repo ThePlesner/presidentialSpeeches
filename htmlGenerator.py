@@ -1,12 +1,13 @@
-import dominate # For generating HTML
-from dominate.tags import * # For easy access to HTML tag methods
-import readability # Our own functions to generate readability numbers
-import clouds # Our own functions to generate word clouds
-import json # For parsing the json with presidential periods data
-from pathlib import Path # Used to generate OS specific file paths
+import dominate  # For generating HTML
+from dominate.tags import *  # For easy access to HTML tag methods
+import readability  # Our own functions to generate readability numbers
+import clouds  # Our own functions to generate word clouds
+import json  # For parsing the json with presidential periods data
+from pathlib import Path  # Used to generate OS specific file paths
 
 # Opens and reads json file
-presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8').read()
+presidentialPeriods = open('presidentialPeriods.json',
+                           'r', encoding='utf-8').read()
 # Parses json into python
 presidentialPeriods = json.loads(presidentialPeriods)
 
@@ -33,7 +34,8 @@ def writeHTML():
         presidentContainer.add(generateSpeechBox(year))
         print(f"The speech from {year} was created.")
       except:
-        print(f"The speech from {year} does not exist.")
+        print(
+            f"The speech from {year} was an inauguration speech, or does not exist.")
 
     # The unordered list can be manipulated like a python list:
     presidencies += presidentContainer

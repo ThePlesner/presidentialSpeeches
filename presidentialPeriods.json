@@ -1,11 +1,57 @@
-[{"name": "John F. Kennedy", "period_from": 1961, "period_to": 1963}, 
-{"name": "Lyndon B. Johnson", "period_from": 1964, "period_to": 1969}, 
-{"name": "Richard M. Nixon", "period_from": 1970, "period_to": 1974}, 
-{"name": "Gerald Ford", "period_from": 1975, "period_to": 1977}, 
-{"name": "Jimmy Carter", "period_from": 1978, "period_to": 1980}, 
-{"name": "Ronald Reagan", "period_from": 1982, "period_to": 1988}, 
-{"name": "George H. W. Bush", "period_from": 1990, "period_to": 1992}, 
-{"name": "Bill Clinton", "period_from": 1994, "period_to": 2000}, 
-{"name": "George W. Bush", "period_from": 2002, "period_to": 2008}, 
-{"name": "Barack Obama", "period_from": 2010, "period_to": 2016}, 
-{"name": "Donald Trump", "period_from": 2018, "period_to": 2019}]
+[
+	{
+		"name": "John F. Kennedy",
+		"period_from": 1961,
+		"period_to": 1963
+	},
+	{
+		"name": "Lyndon B. Johnson",
+		"period_from": 1964,
+		"period_to": 1969
+	},
+	{
+		"name": "Richard M. Nixon",
+		"period_from": 1970,
+		"period_to": 1974
+	},
+	{
+		"name": "Gerald Ford",
+		"period_from": 1975,
+		"period_to": 1977
+	},
+	{
+		"name": "Jimmy Carter",
+		"period_from": 1978,
+		"period_to": 1980
+	},
+	{
+		"name": "Ronald Reagan",
+		"period_from": 1981,
+		"period_to": 1988
+	},
+	{
+		"name": "George H. W. Bush",
+		"period_from": 1989,
+		"period_to": 1992
+	},
+	{
+		"name": "Bill Clinton",
+		"period_from": 1993,
+		"period_to": 2000
+	},
+	{
+		"name": "George W. Bush",
+		"period_from": 2001,
+		"period_to": 2008
+	},
+	{
+		"name": "Barack Obama",
+		"period_from": 2009,
+		"period_to": 2016
+	},
+	{
+		"name": "Donald Trump",
+		"period_from": 2017,
+		"period_to": 2019
+	}
+]
