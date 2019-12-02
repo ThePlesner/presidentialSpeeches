@@ -8,9 +8,8 @@ import readability
 import clouds
 # For parsing the json with presidential periods data
 import json
-
-# Counter variable for the progress bar in the interface
-progress = 0
+# Used to generate OS specific file paths
+from pathlib import Path
 
 # Opens and reads json file
 presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8').read()
@@ -37,8 +36,6 @@ def writeHTML():
       try:
         # Adds a box with every speech's data
         presidentContainer.add(generateSpeechBox(year))
-        # Every speech adds 1 to the progress
-        progress += 1
       except:
         print(f"The speech from {year} does not exist.")
 
@@ -69,7 +66,7 @@ def generateSpeechBox(year):
   yearHeading = h2(year)
   # Generating a div with headings for the readability numbers
   readabilityBox = div(h3(f"Coleman-Liau Index: {CLI}"), h3(f"LIX: {LIX}"))
-  readabilityBox['class'] = 'readability-box'
+  # # readabilityBox['class'] = 'readability-box'
   # Generating a div for text elements for easier layout
   textBox = div(className="text-box")
   # Putting the text elements together for layouting
@@ -79,4 +76,3 @@ def generateSpeechBox(year):
   speechBox.add(textBox)
   
   return speechBox
-
