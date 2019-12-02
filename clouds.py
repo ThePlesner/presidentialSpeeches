@@ -1,9 +1,6 @@
-# Imports the WordCloud method to generate wordcloud images
-from wordcloud import WordCloud
-# Used to check for already existing wordcloud files, as to not generate them every time
-import os
-# Used to generate OS specific file paths
-from pathlib import Path
+from wordcloud import WordCloud # Imports the WordCloud method to generate wordcloud images
+import os # Used to check for already existing wordcloud files, as to not generate them every time
+from pathlib import Path # Used to generate OS specific file paths
 
 def createWordCloud(year):
   filePath = Path('speeches', f'{year}.txt')
@@ -14,6 +11,7 @@ def createWordCloud(year):
 
     # First we set size settings with the WordCloud method, then we generate the wordcloud object
     wordcloud = WordCloud(width=800, height=600).generate(speech)
+
     # Then we generate an image object from the wordcloud object
     image = wordcloud.to_image()
     return image
@@ -25,6 +23,7 @@ def showWordCloud(year):
 def saveWordCloud(year):
   # Path and name of generated image file
   filePath = Path('output/images', f'{year}-wordcloud.png')
+
   # Only generates file if it does not exist
   if not os.path.isfile(filePath):
     createWordCloud(year).save(filePath)

@@ -1,23 +1,19 @@
-# Used to generate native graphical user interfaces
-import tkinter as tk
-# Used to open our overview in the default browser
-import webbrowser
-# Our own functions to generate readability numbers
-import readability
-# Our own functions to generating an html file with an overview of our data
-import htmlGenerator
-# Our own functions to generate word clouds
-import clouds
-# Used to generate OS specific file paths
-from pathlib import Path
+import tkinter as tk # Used to generate native graphical user interfaces
+import webbrowser # Used to open our overview in the default browser
+import readability # Our own functions to generate readability numbers
+import htmlGenerator # Our own functions to generating an html file with an overview of our data
+import clouds # Our own functions to generate word clouds
+from pathlib import Path # Used to generate OS specific file paths
 
 # Shows a wordcloud and readability indices for one year
 def generateOne(year, root):
   # Creates and shows the wordcloud for the selected year
   clouds.showWordCloud(year)
+
   # Toplevel() creates a new "widget" as a new window
   window = tk.Toplevel(root)
-  # Get the two indexes as a tuple from our own library
+
+  # Get the two indices as a tuple from our own library
   readabilityNums = readability.readability(year)
   CLI = readabilityNums[0]
   LIX = readabilityNums[1]
@@ -26,6 +22,7 @@ def generateOne(year, root):
   listBox = tk.Listbox(window)
   # pack() organizes the elements before attaching it to the parent element (window)
   listBox.pack()
+
   # Inserts as list elements the year and indices
   listBox.insert(tk.END, f"Indexes for: {year}")
   listBox.insert(tk.END, f"LIX: {LIX}")
@@ -35,6 +32,7 @@ def generateOne(year, root):
 def generateAll():
   # Writes the html file
   htmlGenerator.writeHTML()
+
   # Opens the file in the default browser
   webbrowser.open_new_tab(Path('output/documents', 'overview.html'))
 
@@ -72,5 +70,6 @@ infoText.pack()
 
 # Packs the frame and attaches it to the middle of the window
 inputFrame.pack(anchor=tk.CENTER)
+
 # Runs the GUI
 root.mainloop()
