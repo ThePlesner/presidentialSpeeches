@@ -60,13 +60,13 @@ generateAllButton = tk.Button(inputFrame, text="Generate all", command=generateA
 generateAllButton.pack(fill=tk.BOTH, padx=(40, 40), pady=(5, 5))
 
 # Adds a small guide to the window
-infoText = tk.Label(inputFrame, text="This is our (minimalistic) GUI. In the input field you can write a year\n"
-                                     "between 1961 and 2019 and press 'Show For Year'. This will generate one\n"
-                                     "wordcloud for the State of the Union speech for that year, and create a\n"
-                                     "new window with the readability indices. If you press 'Generate All' you\n"
-                                     "will not need to write a year, as it will generate an HTML file,\n"
-                                     "wordcloud images, and open it in your default browser.\n"
-                                     "This might take some time.")
+infoText = tk.Label(inputFrame, text= "To see a 'topical' wordcloud for a given year:\n"
+																			"Write a year between 1961 and 2019 in the input field\n"
+																			"and click 'Show For Year'\n"
+																			"\n"
+																			"To see an overview of all available speeches' data:\n"
+																			"Click 'Generate All'.\n"
+																			"This might take a while.")
 infoText.pack()
 
 # Packs the frame and attaches it to the middle of the window

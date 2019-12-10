@@ -6,8 +6,7 @@ import json  # For parsing the json with presidential periods data
 from pathlib import Path  # Used to generate OS specific file paths
 
 # Opens and reads json file
-presidentialPeriods = open('presidentialPeriods.json',
-                           'r', encoding='utf-8').read()
+presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8').read()
 # Parses json into python
 presidentialPeriods = json.loads(presidentialPeriods)
 
@@ -32,7 +31,7 @@ def writeHTML():
       try:
         # Adds a box with every speech's data
         presidentContainer.add(generateSpeechBox(year))
-        print(f"The speech from {year} was created.")
+        print(f"{year} ✓.")
       except:
         print(
             f"The speech from {year} was an inauguration speech, or does not exist.")
