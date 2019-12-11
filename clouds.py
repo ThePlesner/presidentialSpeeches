@@ -2,22 +2,23 @@
 from wordcloud import WordCloud
 # Used to generate OS specific file paths and check for existing files
 from pathlib import Path
+# Used to read a speech
+from readability import readSpeech
 
 
 def createWordCloud(year):
-  filePath = Path('speeches', f'{year}.txt')
-  
-  # errors='replace' is used to work around decoding errors, since it would unnecessarily time consuming to make sure all the speeches are in utf-8
-  with open(filePath, 'r', encoding='utf-8', errors='replace') as textFile:
-    # We don't want duplicate words with differing capitalizations
-    speech = textFile.read().lower()
+  speech = readSpeech(year)
 
-    # First we set size settings with the WordCloud method, then we generate the wordcloud object
-    wordcloud = WordCloud(width=800, height=600).generate(speech)
+  # We don't want duplicate words with differing capitalizations in our wordcloud
+  speech = speech.lower()
 
-    # Then we generate an image object from the wordcloud object
-    image = wordcloud.to_image()
-    return image
+  # First we set size settings with the WordCloud method, then we generate the wordcloud object
+  wordcloud = WordCloud(width=800, height=600).generate(speech)
+
+  # Then we generate an image object from the wordcloud object
+  image = wordcloud.to_image()
+
+  return image
 
 
 def showWordCloud(year):

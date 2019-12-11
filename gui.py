@@ -49,8 +49,8 @@ inputField = tk.Entry(inputFrame)
 inputField.pack(padx=(40, 40), pady=(5, 5))
 
 '''Creates two buttons; one for generating a single speech, one for generating all speeches
-	 The command argument is the callback function to run when the button is clicked. The anonymous lambda function calls
-	 generateOne() with our arguments, as to not call this function immediately when the button is created '''
+   The command argument is the callback function to run when the button is clicked. The anonymous lambda function calls
+   generateOne() with our arguments, as to not call this function immediately when the button is created '''
 generateOneButton = tk.Button(inputFrame, text="Show For Year", command=lambda: generateOne(inputField.get(), root))
 # Sets padding and width (fill) of button
 generateOneButton.pack(fill=tk.BOTH, padx=(40, 40), pady=(5, 5))
@@ -61,12 +61,12 @@ generateAllButton.pack(fill=tk.BOTH, padx=(40, 40), pady=(5, 5))
 
 # Adds a small guide to the window
 infoText = tk.Label(inputFrame, text= "To see a 'topical' wordcloud for a given year:\n"
-																			"Write a year between 1961 and 2019 in the input field\n"
-																			"and click 'Show For Year'\n"
-																			"\n"
-																			"To see an overview of all available speeches' data:\n"
-																			"Click 'Generate All'.\n"
-																			"This might take a while.")
+                                      "Write a year between 1961 and 2019 in the input field\n"
+                                      "and click 'Show For Year'\n"
+                                      "\n"
+                                      "To see an overview of all available speeches' data:\n"
+                                      "Click 'Generate All'.\n"
+                                      "This might take a while.")
 infoText.pack()
 
 # Packs the frame and attaches it to the middle of the window

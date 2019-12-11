@@ -5,8 +5,10 @@ import clouds  # Our own functions to generate word clouds
 import json  # For parsing the json with presidential periods data
 from pathlib import Path  # Used to generate OS specific file paths
 
+
 # Opens and reads json file
 presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8').read()
+
 # Parses json into python
 presidentialPeriods = json.loads(presidentialPeriods)
 
@@ -31,10 +33,9 @@ def writeHTML():
       try:
         # Adds a box with every speech's data
         presidentContainer.add(generateSpeechBox(year))
-        print(f"{year} ✓.")
+        print(f"{year} ✓")
       except:
-        print(
-            f"The speech from {year} was an inauguration speech, or does not exist.")
+        print(f"The speech from {year} was an inauguration speech, or does not exist.")
 
     # The unordered list can be manipulated like a python list:
     presidencies += presidentContainer
@@ -45,7 +46,7 @@ def writeHTML():
   filePath = Path('output/documents', 'overview.html')
   # Writes the document to an html-file
   with open(filePath, 'w', encoding='utf-8') as file:
-    # the DOM object needs to be converted to a string to do so
+    # the DOM class needs to be converted to a string to do write to a plaintext file
     file.write(str(document))
 
 
@@ -67,7 +68,6 @@ def generateSpeechBox(year):
   # Generating a div with headings for the readability numbers
   readabilityBox = div(h3(f"Coleman-Liau Index: {CLI}"), h3(f"LIX: {LIX}"))
 
-  # # readabilityBox['class'] = 'readability-box'
   # Generating a div for text elements for easier layout
   textBox = div(className="text-box")
 
