@@ -10,11 +10,8 @@ from pathlib import Path  # Used to generate OS specific file paths
 def getPresident(year):
   presidentName = ""
   
-  # Opens and reads json file
-  presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8').read()
-
-  # Parses json into python as a list of dictionaries
-  presidentialPeriods = json.loads(presidentialPeriods)
+  # The dictionary of presidents and their presidential periods has already been parsed in the htmlGenerator
+  presidentialPeriods = htmlGenerator.presidentialPeriods
 
   # Iterates over the list of presidents to check whether the year is in the range for each president.
   for president in presidentialPeriods:
