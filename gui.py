@@ -6,21 +6,23 @@ import clouds  # Our own functions to generate word clouds
 import json #Imports json for parsing json files
 from pathlib import Path  # Used to generate OS specific file paths
 
+# gets the name of the president where the year is in the presidential period.
 def getPresident(year):
-  currentPresident = ""
+  presidentName = ""
   
   # Opens and reads json file
   presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8').read()
 
-  # Parses json into python
+  # Parses json into python as a list of dictionaries
   presidentialPeriods = json.loads(presidentialPeriods)
 
+  # Iterates over the list of presidents to check whether the year is in the range for each president.
   for president in presidentialPeriods:
-    #if year in range(president['period_from'], president['period_to'] + 1):
-      #currentPresident = president['name']
-      print(president["period_from"])
+    if int(year) in range(president['period_from'], president['period_to'] + 1):
+      # Gets the name of the president if the year is in the range.
+      presidentName = president['name']
   
-  return currentPresident
+  return presidentName
 
 
 
