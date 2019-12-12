@@ -12,7 +12,6 @@ presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8').re
 # Parses json into python
 presidentialPeriods = json.loads(presidentialPeriods)
 
-
 def writeHTML():
   # Generates an empty html-template with only a title
   document = dominate.document(title="Presidential Speeches")

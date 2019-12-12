@@ -7,9 +7,7 @@ import json #Imports json for parsing json files
 from pathlib import Path  # Used to generate OS specific file paths
 
 # gets the name of the president where the year is in the presidential period.
-def getPresident(year):
-  presidentName = ""
-  
+def getPresident(year):  
   # The dictionary of presidents and their presidential periods has already been parsed in the htmlGenerator
   presidentialPeriods = htmlGenerator.presidentialPeriods
 
@@ -17,11 +15,7 @@ def getPresident(year):
   for president in presidentialPeriods:
     if int(year) in range(president['period_from'], president['period_to'] + 1):
       # Gets the name of the president if the year is in the range.
-      presidentName = president['name']
-  
-  return presidentName
-
-
+      return president['name']
 
 # Shows a wordcloud and readability indices for one year
 def generateOne(year, root):

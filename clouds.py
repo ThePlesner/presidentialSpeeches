@@ -20,7 +20,6 @@ def createWordCloud(year):
 
   return image
 
-
 def showWordCloud(year):
   # Displays in default image application
   createWordCloud(year).show()
@@ -31,6 +30,5 @@ def saveWordCloud(year):
   filePath = Path('output/images', f'{year}-wordcloud.png')
 
   # Only generates file if it does not exist
-  # if not os.path.isfile(filePath):
   if not filePath.is_file():
     createWordCloud(year).save(filePath)
