@@ -69,7 +69,6 @@ def generateSpeechBox(year):
 
   # Generating a div for text elements for easier layout
   textBox = div(className="text-box")
-
   # Putting the text elements together for layouting
   textBox.add(yearHeading, readabilityBox)
 
