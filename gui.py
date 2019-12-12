@@ -3,7 +3,26 @@ import webbrowser  # Used to open our overview in the default browser
 import readability  # Our own functions to generate readability numbers
 import htmlGenerator # Our own functions to generating an html file with an overview of our data
 import clouds  # Our own functions to generate word clouds
+import json #Imports json for parsing json files
 from pathlib import Path  # Used to generate OS specific file paths
+
+def getPresident(year):
+  currentPresident = ""
+  
+  # Opens and reads json file
+  presidentialPeriods = open('presidentialPeriods.json', 'r', encoding='utf-8').read()
+
+  # Parses json into python
+  presidentialPeriods = json.loads(presidentialPeriods)
+
+  for president in presidentialPeriods:
+    #if year in range(president['period_from'], president['period_to'] + 1):
+      #currentPresident = president['name']
+      print(president["period_from"])
+  
+  return currentPresident
+
+
 
 # Shows a wordcloud and readability indices for one year
 def generateOne(year, root):
@@ -25,6 +44,7 @@ def generateOne(year, root):
 
   # Inserts as list elements the year and indices
   listBox.insert(tk.END, f"Indexes for: {year}")
+  listBox.insert(tk.END, f"{getPresident(year)}")
   listBox.insert(tk.END, f"LIX: {LIX}")
   listBox.insert(tk.END, f"CLI: {CLI}")
 
@@ -55,7 +75,7 @@ generateOneButton = tk.Button(inputFrame, text="Show For Year", command=lambda: 
 # Sets padding and width (fill) of button
 generateOneButton.pack(fill=tk.BOTH, padx=(40, 40), pady=(5, 5))
 
-generateAllButton = tk.Button(inputFrame, text="Generate all", command=generateAll)
+generateAllButton = tk.Button(inputFrame, text="Generate All", command=generateAll)
 # Sets padding and width (fill) of button
 generateAllButton.pack(fill=tk.BOTH, padx=(40, 40), pady=(5, 5))
 
