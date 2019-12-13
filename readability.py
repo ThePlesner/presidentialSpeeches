@@ -6,7 +6,8 @@ from pathlib import Path  # Used to generate OS specific file paths
 def readSpeech(year):
   filePath = Path('speeches', f'{year}.txt')
 
-  # errors='replace' is used to work around decoding errors, since it would unnecessarily time consuming to make sure all the speeches are in utf-8
+  # errors='replace' is used to work around decoding errors,
+	# since it would unnecessarily time consuming to make sure all the speeches are in utf-8
   with open(filePath, 'r', encoding='utf-8', errors='replace') as textFile:
     speech = textFile.read()
     return speech
@@ -19,7 +20,8 @@ def initialCleaning(speech):
   cleanSpeech = re.sub(r"[^a-zA-Z \.'\?!]", "", cleanSpeech)
   return cleanSpeech
 
-# LIX = (number of words / number of sentences) + (number of long words * 100) / number of words
+# LIX = (number of words / number of sentences)
+# + (number of long words * 100) / number of words
 def calculateLix(speech):
   cleanSpeech = initialCleaning(speech)
 
@@ -44,7 +46,8 @@ def calculateLix(speech):
   lix = (numWords / numSentences) + ((numLongWords * 100) / numWords)
   return round(lix, 2)
 
-# CLI = 0.0588 * (avg num of letters / 100 words) - 0.296 * (avg num of sentences / 100 words) - 15.8
+# CLI = 0.0588 * (avg num of letters / 100 words)
+# - 0.296 * (avg num of sentences / 100 words) - 15.8
 def calculateColemanLiau(speech):
   cleanSpeech = initialCleaning(speech)
 

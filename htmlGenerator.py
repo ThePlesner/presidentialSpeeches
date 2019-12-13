@@ -45,7 +45,7 @@ def writeHTML():
   filePath = Path('output/documents', 'overview.html')
   # Writes the document to an html-file
   with open(filePath, 'w', encoding='utf-8') as file:
-    # the DOM class needs to be converted to a string to do write to a plaintext file
+    # the DOM object needs to be converted to a string to write to a plaintext file
     file.write(str(document))
 
 
@@ -55,7 +55,8 @@ def generateSpeechBox(year):
   CLI = readabilityNums[0]
   LIX = readabilityNums[1]
 
-  # Generating a word cloud image, if it does not already exist for the given year
+  # Generating a word cloud image
+	# if it does not already exist for the given year
   clouds.saveWordCloud(year)
 
   # Generates a div for every year's speech
