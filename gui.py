@@ -1,17 +1,21 @@
-import tkinter as tk  # Used to generate native graphical user interfaces
+ # Used to generate native graphical user interfaces:
+import tkinter as tk 
 import webbrowser  # Used to open our overview in the default browser
 import readability  # Our own functions to generate readability numbers
-import htmlGenerator # Our own functions to generating an html file with an overview of our data
+# Our own functions to generating an html file with an overview of our data:
+import htmlGenerator 
 import clouds  # Our own functions to generate word clouds
 import json #Imports json for parsing json files
 from pathlib import Path  # Used to generate OS specific file paths
 
 # gets the name of the president where the year is in the presidential period.
 def getPresident(year):  
-  # The dictionary of presidents and their presidential periods has already been parsed in the htmlGenerator
+  # The dictionary of presidents and their presidential periods
+	# has already been parsed in the htmlGenerator
   presidentialPeriods = htmlGenerator.presidentialPeriods
 
-  # Iterates over the list of presidents to check whether the year is in the range for each president.
+  # Iterates over the list of presidents
+	# to check whether the year is in the range for each president.
   for president in presidentialPeriods:
     if int(year) in range(president['period_from'], president['period_to'] + 1):
       # Gets the name of the president if the year is in the range.
@@ -32,7 +36,8 @@ def generateOne(year, root):
 
   # A listbox is created as it allowed us to display information in a list format
   listBox = tk.Listbox(window)
-  # pack() organizes the elements before attaching it to the parent element (window)
+  # pack() organizes the elements
+	# before attaching it to the parent element (window)
   listBox.pack()
 
   # Inserts as list elements the year and indices
@@ -41,7 +46,8 @@ def generateOne(year, root):
   listBox.insert(tk.END, f"LIX: {LIX}")
   listBox.insert(tk.END, f"CLI: {CLI}")
 
-# Generates and shows wordclouds and readability indices for all existing speeches
+# Generates and shows wordclouds and
+# readability indices for all existing speeches
 def generateAll():
   # Writes the html file
   htmlGenerator.writeHTML()
@@ -61,25 +67,30 @@ inputField = tk.Entry(inputFrame)
 # Sets the padding of the input field
 inputField.pack(padx=(40, 40), pady=(5, 5))
 
-'''Creates two buttons; one for generating a single speech, one for generating all speeches
-   The command argument is the callback function to run when the button is clicked. The anonymous lambda function calls
-   generateOne() with our arguments, as to not call this function immediately when the button is created '''
-generateOneButton = tk.Button(inputFrame, text="Show For Year", command=lambda: generateOne(inputField.get(), root))
+# Creates two buttons; one for generating a single speech,
+# one for generating all speeches.
+# The command argument is the callback function to run
+# when the button is clicked. The anonymous lambda function calls generateOne()
+# with our arguments, as to not call this function immediately when the button is created
+generateOneButton = tk.Button(inputFrame, text="Show For Year",
+command=lambda: generateOne(inputField.get(), root))
 # Sets padding and width (fill) of button
 generateOneButton.pack(fill=tk.BOTH, padx=(40, 40), pady=(5, 5))
 
-generateAllButton = tk.Button(inputFrame, text="Generate All", command=generateAll)
+generateAllButton = tk.Button(inputFrame, text="Generate All",
+command=generateAll)
 # Sets padding and width (fill) of button
 generateAllButton.pack(fill=tk.BOTH, padx=(40, 40), pady=(5, 5))
 
 # Adds a small guide to the window
-infoText = tk.Label(inputFrame, text= "To see a 'topical' wordcloud for a given year:\n"
-                                      "Write a year between 1961 and 2019 in the input field\n"
-                                      "and click 'Show For Year'\n"
-                                      "\n"
-                                      "To see an overview of all available speeches' data:\n"
-                                      "Click 'Generate All'.\n"
-                                      "This might take a while.")
+infoText = tk.Label(inputFrame, text=
+"To see a 'topical' wordcloud for a given year:\n"
+"Write a year between 1961 and 2019 in the input field\n"
+"and click 'Show For Year'\n"
+"\n"
+"To see an overview of all available speeches' data:\n"
+"Click 'Generate All'.\n"
+"This might take a while.")
 infoText.pack()
 
 # Packs the frame and attaches it to the middle of the window

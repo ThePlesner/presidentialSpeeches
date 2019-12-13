@@ -12,7 +12,8 @@ def createWordCloud(year):
   # We don't want duplicate words with differing capitalizations in our wordcloud
   speech = speech.lower()
 
-  # First we set size settings with the WordCloud method, then we generate the wordcloud object
+  # First we set size settings with the WordCloud method, 
+	# then we generate the wordcloud object
   wordcloud = WordCloud(width=800, height=600).generate(speech)
 
   # Then we generate an image object from the wordcloud object
